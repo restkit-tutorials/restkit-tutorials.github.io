@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building iOS app with RestKit. Part 1"
-date: 2013-12-23 07:52:20 +0200
+date: 2013-12-28 07:52:20 +0200
 ---
 How-to build iOS app with RestKit. 
 We're building Github Client. Part 1
