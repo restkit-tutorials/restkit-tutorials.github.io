@@ -268,6 +268,7 @@ Our request should work and you should get 200 Succcess response now and see the
 
 # Part 2
 Below is a list of things that will be covered in part #2:
+
 - browsing stars
 - starring repo
 - more RestKit ticks
