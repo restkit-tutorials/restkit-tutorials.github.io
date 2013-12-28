@@ -4,9 +4,10 @@ title: "Building iOS app with RestKit. Part 1"
 date: 2013-12-28 07:52:20 +0200
 ---
 How-to build iOS app with RestKit. 
-We're building Github Client. Part 1
+We're building Github Client. Part 1.
 
 
+In the bottom you'll find link to github repo with code.
 # API
 As an API for our application we'll use so popular [GitHub API](http://developer.github.com/v3/).
 
@@ -266,15 +267,11 @@ At the time of `sharedManager` initialization, set header like this:
 This will set default header value for the "Authorization" header.
 Our request should work and you should get 200 Succcess response now and see the result in app!
 
+You can get access to repo here [AKGithubClient](https://github.com/restkit-tutorials/AKGithubClient)
+
 # Part 2
 Below is a list of things that will be covered in part #2:
 
 - browsing stars
 - starring repo
 - more RestKit ticks
-
-
-
-
-
-
