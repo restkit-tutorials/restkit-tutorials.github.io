@@ -23,6 +23,7 @@ Why?
 (this project will be also available on Github)
 
 To fully cover extensibility and maintainability we'll need to pick up few different resources that we want to incorporate into our application:
+
 * Users
 * Stars
 
