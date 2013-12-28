@@ -1,0 +1,11 @@
+name: RestKit Tutorials
+markdown: redcarpet
+pygments: true
+permalink: /:title/
+
+# RSS generator
+
+name: "RestKit Tutorials"
+url: "http://restkit-tutorials.com/"
+description: "Blog dedicated to all topics around RestKit"
+author: "Alex Kurkin"
