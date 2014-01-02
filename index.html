@@ -5,14 +5,16 @@ meta_description: RestKit tutorials, restkit guides, restkit how-to, blog about 
 ---
 
 {% for post in site.posts %}
-  <section class="post">
-      <header class="entry-header">
-          <h2 class="entry-title"><a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a></h2>
-      </header>
-      <div class="entry-description clearfix">{{ post.excerpt }}</div>
+    <section class="post">
+        <header class="entry-header">
+            <h2 class="entry-title">
+                <a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a>
+                <span class="pull-right label label-default">{{ post.component }}</span>
+            </h2>
+        </header>
+        <div class="entry-description clearfix">{{ post.excerpt }}</div>
         <footer>
-          <a class="btn btn-default" rel="full-article" href="{{ post.url }}">Read On</a>
+            <a class="btn btn-default" rel="full-article" href="{{ post.url }}">Read On</a>
         </footer>
-  </section>
-
+    </section>
 {% endfor %}

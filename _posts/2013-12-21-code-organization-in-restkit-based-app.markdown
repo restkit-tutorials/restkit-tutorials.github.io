@@ -4,6 +4,7 @@ title: "Code Organization in RestKit-based app"
 date: 2013-12-21 10:36:25 +0200
 meta_description: "Code setup in RestKit. Code Organization in RestKit. Best RestKit setup. Blog post about creating flexible and maintainable ios app with RestKit"
 component: Support
+component_class: "label-support"
 ---
 Code organization and app structure are such an opinionated topics. Today we'll talk about following some design principles suggested by RestKit in our application and creating extendable application that will heavily utilize this library.
 

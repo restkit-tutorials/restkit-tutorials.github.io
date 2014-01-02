@@ -115,6 +115,25 @@ a, a:focus, a:hover {
   margin: 2em auto;
 }
 
+section.post .label {
+  font-family: "ProximaNova-Light", "Helvetica Neue", Helvetica;
+  font-size: 0.6em;
+  font-weight: lighter;
+  padding: .3em .6em .3em;
+}
+
+.label-guide {
+  background: #FF7200;
+}
+
+.label-support {
+  background: #83A300;
+}
+
+.label-network {
+  background-color: #327CCB;
+}
+
 .entry-title {
   color: #222;
   font-size: 1.8em;
@@ -156,7 +175,6 @@ a, a:focus, a:hover {
   color: #aaa;
   font-size: 90%;
   text-align: center;
-  text-transform: uppercase;
 }
 
 /* Secondary 

@@ -4,6 +4,7 @@ title: "Logging in RestKit"
 date: 2014-01-02 08:00:00 +0200
 meta_description: "Logging in RestKit. How to enable logging in RestKit. Guide on logging in RestKit."
 component: Support
+component_class: "label-support"
 ---
 In this post we'll talk about flexible and extensive logging available in RestKit.
 

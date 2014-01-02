@@ -6,3 +6,9 @@ permalink: /:title/
 url: "http://restkit-tutorials.com/"
 description: "Blog dedicated to all topics around RestKit"
 author: "Alex Kurkin"
+
+components:
+    - Network
+    - Object Mapping
+    - RestKit
+    - Support
