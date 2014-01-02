@@ -3,6 +3,7 @@ layout: post
 title: "RestKit - How to set custom header for HTTP request"
 date: 2013-12-29 10:18:58 +0200
 meta_description: "How to set custom header in RestKit. This blog post explains 2 ways to set custom HTTP header to requests sent via RestKit"
+component: Network
 ---
 There are 2 different approaches to solve this problem. We'll go thru each of them and describe when to use them.
 
