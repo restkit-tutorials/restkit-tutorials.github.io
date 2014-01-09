@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "RestKit - How to set custom header for HTTP request"
-date: 2013-12-29 10:18:58 +0200
+date: 2013-12-29 00:00:00 +0000
 meta_description: "How to set custom header in RestKit. This blog post explains 2 ways to set custom HTTP header to requests sent via RestKit"
 component: Network
 component_class: "label-network"

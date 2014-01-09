@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Logging in RestKit"
-date: 2014-01-02 08:00:00 +0200
+date: 2014-01-02 00:00:00 +0000
 meta_description: "Logging in RestKit. How to enable logging in RestKit. Guide on logging in RestKit."
 component: Support
 component_class: "label-support"

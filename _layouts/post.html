@@ -9,6 +9,9 @@ layout: default
             <span class="pull-right label label-default">{{ page.component }}</span>
         </h1>
     </header>
+    <p class="entry-meta">
+      {{page.date | date: '%B %d, %Y' }}
+    </p>
     <hr>
     <div class="entry-description clearfix">{{ content }}</div>
 </section> <!-- /.post -->

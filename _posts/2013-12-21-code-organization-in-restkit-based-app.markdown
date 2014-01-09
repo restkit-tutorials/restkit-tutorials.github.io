@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Code Organization in RestKit-based app"
-date: 2013-12-21 10:36:25 +0200
+date: 2013-12-21 00:00:00 +0000
 meta_description: "Code setup in RestKit. Code Organization in RestKit. Best RestKit setup. Blog post about creating flexible and maintainable ios app with RestKit"
 component: Support
 component_class: "label-support"

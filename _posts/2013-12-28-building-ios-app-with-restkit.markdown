@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building iOS app with RestKit. Part 1"
-date: 2013-12-28 07:52:20 +0200
+date: 2013-12-28 00:00:00 +0000
 meta_description: "How to build iOS app with RestKit. RestKit guide. RestKit Mapping."
 component: Guide
 component_class: "label-guide"
