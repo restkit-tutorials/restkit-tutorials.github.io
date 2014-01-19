@@ -73,7 +73,7 @@ Create a subclass of `RKObjectManager` and name it something like `AKObjectManag
 
 
 ### Step 2. 
-Define `sharedManager` method in `AKObjectManager` using Apple's approach to singleton pattern. Also define 2 methods that potentially all subclasses of `AKObjectManager` will use. These 2 methods are for setting up `RKRequestDescriptor`s and `RKResponseDescriptor`s.
+Define `sharedManager` public method in `AKObjectManager`. Also define 2 methods that potentially all subclasses of `AKObjectManager` will use. These 2 methods are for setting up `RKRequestDescriptor`s and `RKResponseDescriptor`s.
 
 #### AKObjectManager.h
 {% highlight objective-c %}
@@ -94,27 +94,24 @@ Define `sharedManager` method in `AKObjectManager` using Apple's approach to sin
 #import "AKObjectManager.h"
 #import <RestKit/RestKit.h>
 
-static AKObjectManager *sharedManager = nil;
-
 @implementation AKObjectManager
 
 + (instancetype)sharedManager {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSURL *url = [NSURL URLWithString:BASE_URL];
+    NSURL *url = [NSURL URLWithString:BASE_URL];
 
-        sharedManager = [self managerWithBaseURL:url];
-        sharedManager.requestSerializationMIMEType = RKMIMETypeJSON;
-        /*
-         THIS CLASS IS MAIN POINT FOR CUSTOMIZATION:
-         - setup HTTP headers that should exist on all HTTP Requests
-         - override methods in this class to change default behavior for all HTTP Requests
-         - define methods that should be available across all object managers
-         */
+    AKObjectManager *sharedManager  = [self managerWithBaseURL:url];
+    sharedManager.requestSerializationMIMEType = RKMIMETypeJSON;
+    /*
+     THIS CLASS IS MAIN POINT FOR CUSTOMIZATION:
+     - setup HTTP headers that should exist on all HTTP Requests
+     - override methods in this class to change default behavior for all HTTP Requests
+     - define methods that should be available across all object managers
+     */
 
-        [sharedManager setupRequestDescriptors];
-        [sharedManager setupResponseDescriptors];
-    });
+    [sharedManager setupRequestDescriptors];
+    [sharedManager setupResponseDescriptors];
+
+    [sharedManager.HTTPClient setDefaultHeader:@"Authorization" value: [NSString stringWithFormat:@"token %@", PERSONAL_ACCESS_TOKEN]];
 
     return sharedManager;
 }
@@ -129,7 +126,7 @@ static AKObjectManager *sharedManager = nil;
 {% endhighlight %}
 
 ### Step 3.
-Every time you have a new resource that you need to load to an application you should create new class inherited from `AKObjectManager`, e.g. `UserManager`. Define methods `setupRequestDescriptor` and `setupResponseDescriptor` (they can be private methods). These methods will be automatically called when you invoke `sharedManager`. And then, make sure to put all your code that adds request/response descriptors into these 2 methods respectively.
+Every time you have a new resource that you need to load to an application you should create new class inherited from `AKObjectManager`, e.g. `UserManager`. Define method `sharedManager` using Apple's approach to singleton patter. Also define methods `setupRequestDescriptor` and `setupResponseDescriptor` (they can be private methods). These methods will be automatically called when you invoke `sharedManager`. And then, make sure to put all your code that adds request/response descriptors into these 2 methods respectively.
  
 #### UserManager.h
 {% highlight objective-c %}
@@ -140,6 +137,51 @@ Every time you have a new resource that you need to load to an application you s
 @interface UserManager : AKObjectManager
 
 - (void) loadAuthenticatedUser:(void (^)(User *user))success failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
+
+@end
+{% endhighlight %}
+
+#### UserManager.m
+{% highlight objective-c %}
+#import "UserManager.h"
+#import <RestKit/RestKit.h>
+#import "MappingProvider.h"
+#import "User.h"
+
+static UserManager *sharedManager = nil;
+
+@implementation UserManager
+
++ (instancetype)sharedManager {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [super sharedManager];
+    });
+
+    return sharedManager;
+}
+
+- (void) loadAuthenticatedUser:(void (^)(User *))success failure:(void (^)(RKObjectRequestOperation *, NSError *))failure {
+    [self getObjectsAtPath:@"/user" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        if (success) {
+            User *currentUser = (User *)[mappingResult.array firstObject];
+            success(currentUser);
+        }
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(operation, error);
+        }
+    }];
+}
+
+#pragma mark - Setup Helpers
+
+- (void) setupResponseDescriptors {
+    [super setupResponseDescriptors];
+
+    RKResponseDescriptor *authenticatedUserResponseDescriptors = [RKResponseDescriptor responseDescriptorWithMapping:[MappingProvider userMapping] method:RKRequestMethodGET pathPattern:@"/user" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    [self addResponseDescriptor:authenticatedUserResponseDescriptors];
+}
 
 @end
 {% endhighlight %}
@@ -172,4 +214,4 @@ Now you can load 'authenticated user' like this:
 @end
 {% endhighlight %}
 
-Have an opinion? Shoot an email, send a message or tweet.
+Have an opinion? Post a comment, send a message or tweet.
